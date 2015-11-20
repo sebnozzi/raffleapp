@@ -9,30 +9,28 @@ import org.scalajs.dom.raw.MessageEvent
 import org.scalajs.dom.raw.ErrorEvent
 import org.scalajs.dom.raw.WebSocket
 import org.scalajs.dom.raw.Event
+import scala.scalajs.js.annotation.JSName
+
+@js.native
+trait PlayRoute extends js.Object {
+  val url: String = js.native
+  @JSName("type")
+  val method: String = js.native
+  def webSocketURL(): String = js.native
+  def absoluteURL(): String = js.native
+}
 
 object PlayRoutesExample {
 
-  trait PlayRoute {
-    def url: String
-    def method: String
-    def webSocketURL: String
-    def absoluteURL: String
+  def doExample(): Unit = {
+    getFromRelativeUrl()
+    getFromUrlWithParams()
+    postToAbsoluteUrl()
+    connectToWebSocket()
   }
 
   def playRoute(dyn: => js.Dynamic): PlayRoute = {
-    new PlayRoute {
-      def method = dyn.`type`.asInstanceOf[String]
-      def url = dyn.url.asInstanceOf[String]
-      def webSocketURL = dyn.webSocketURL().asInstanceOf[String]
-      def absoluteURL = dyn.absoluteURL().asInstanceOf[String]
-    }
-  }
-
-  def doExample(): Unit = {
-    getFromRelativeUrl();
-    getFromUrlWithParams();
-    postToAbsoluteUrl();
-    connectToWebSocket();
+    dyn.asInstanceOf[PlayRoute]
   }
 
   def getFromRelativeUrl(): Unit = {
@@ -46,7 +44,7 @@ object PlayRoutesExample {
     println(s"Getting from relative URL using PlayRoutes: ${route.url}")
     xhr.send()
   }
-  
+
   def getFromUrlWithParams(): Unit = {
     val route = playRoute(global.jsRoutes.controllers.PlayRoutesExample.getWithParams(34, "some-cool-stuff"))
     val xhr = new dom.XMLHttpRequest()
