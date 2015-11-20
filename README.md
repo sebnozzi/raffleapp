@@ -1,8 +1,17 @@
 # Play Framework with Scala.js
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vmunier/play-with-scalajs-example?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 This is a simple example application showing how you can integrate a Play project with a Scala.js project.
+
+Based on the original ["Play Framework with Scala.js" project](https://github.com/vmunier/play-with-scalajs-example), this version focuses on examples showing common patterns of *communication* between the client (Scala.js) and the server (Play).
+
+Examples:
+
+* Sending and receiving plain text via WebSockets
+* Sending and receiving plain text via AJAX calls (GET and POST)
+* Sending and receiving serialized Scala objects
+* Leveraging Play (JavaScript) routes from within Scala.js
+
+## Modules
 
 The application contains three directories:
 * `server` Play application (server side)
@@ -42,13 +51,3 @@ The application uses the [sbt-play-scalajs](https://github.com/vmunier/sbt-play-
 In IntelliJ, open Project wizard, select `Import Project`, choose the root folder and click `OK`.
 Select `Import project from external model` option, choose `SBT project` and click `Next`. Select additional import options and click `Finish`.
 Make sure you use the IntelliJ Scala Plugin v1.3.3 or higher. There are known issues with prior versions of the plugin.
-
-## Deployment
-
-### Heroku
-
-1. `$ heroku create -n` creates an app and prints its name.
-2. Set the `herokuAppName` in `build.sbt` with the name of the application you created.
-3. `$ sbt stage deployHeroku`
-
-This example uses the [sbt-heroku](https://github.com/heroku/sbt-heroku) plugin to deploy to Heroku.
