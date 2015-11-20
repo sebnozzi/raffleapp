@@ -7,6 +7,7 @@ GET     /                           controllers.Application.index
 GET     /webSocketExample/connect   controllers.WebSocketExample.connect
 GET     /ajaxExample/get            controllers.AjaxExample.get
 POST    /ajaxExample/post           controllers.AjaxExample.post
+POST    /serializationExample/post  controllers.SerializationExample.post
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

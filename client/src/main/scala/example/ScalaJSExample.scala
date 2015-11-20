@@ -16,6 +16,7 @@ object ScalaJSExample extends js.JSApp {
     
     WebSocketExample.doExample()
     AjaxExample.doExample()
+    SerializationExample.doExample()
     
   }
   

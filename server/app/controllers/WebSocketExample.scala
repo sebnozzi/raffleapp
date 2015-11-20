@@ -23,6 +23,15 @@ object MyWebSocketActor {
 }
 
 class MyWebSocketActor(out: ActorRef) extends Actor {
+
+  override def preStart(): Unit = {
+    Logger.debug("Client connected via WebSocket")
+  }
+
+  override def postStop(): Unit = {
+    Logger.debug("Client disconnected from WebSocket")
+  }
+
   def receive = {
     case msg: String =>
       Logger.debug("The client sent: " + msg)

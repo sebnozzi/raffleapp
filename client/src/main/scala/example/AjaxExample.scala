@@ -1,8 +1,8 @@
 package example
 
+import scala.scalajs.js.Any.fromFunction1
+
 import org.scalajs.dom
-import org.scalajs.dom.html
-import scala.scalajs.js.annotation.JSExport
 
 object AjaxExample {
 
@@ -16,7 +16,7 @@ object AjaxExample {
     xhr.open("GET", "http://localhost:9000/ajaxExample/get")
     xhr.onload = (e: dom.Event) => {
       if (xhr.status == 200)
-        println(xhr.responseText)
+        println(s"Response from AJAX-GET: ${xhr.responseText}")
     }
     xhr.send()
   }
@@ -26,9 +26,9 @@ object AjaxExample {
     xhr.open("POST", "http://localhost:9000/ajaxExample/post")
     xhr.onload = (e: dom.Event) => {
       if (xhr.status == 200)
-        println(xhr.responseText)
+        println(s"Response from AJAX-POST: ${xhr.responseText}")
     }
-    xhr.send()
+    xhr.send("hello from Scala.js")
   }
 
 }
