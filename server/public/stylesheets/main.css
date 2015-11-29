@@ -1,0 +1,83 @@
+
+body {
+  font-family: sans-serif;
+}
+
+.raffle-toolbox {
+}
+
+#participants {
+  margin-top: 20px;
+}
+
+#participants {
+  padding: 0;
+}
+
+#participants li {
+  float: left;
+  display: block;
+}
+
+.participant {
+  background-color: #B3B3B3;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: #505050;
+}
+
+#participants .participant {
+  border-radius: 5px;
+  border: 2px solid #6F6F6F;
+  height: 150px;
+  width: 100px;
+}
+
+#participant_widget_container div.participant {
+  border-radius: 5px;
+  border: 5px solid #6F6F6F;
+  height: 300px;
+  width: 200px;
+}
+
+.participant img {
+  width: 90%;
+  height: auto;
+  opacity: 0.5;
+  text-align: center;
+}
+
+.participant.winner {
+  background-color: #B5F5B1;
+  color: black;
+}
+
+.participant.active {
+  background-color: #EAB463;
+  color: black;
+}
+
+.participant.active img {
+  opacity: 1.0;
+}
+
+.participant.winner img {
+  opacity: 1.0;
+}
+
+.participant-id {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: small;
+}
+
+.participant-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+input.participant_name {
+
+}

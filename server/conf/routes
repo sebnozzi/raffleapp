@@ -3,17 +3,13 @@
 # ~~~~
 
 # Home page
-GET     /                                           controllers.Application.index
 
-GET     /webSocketExample/connect                   controllers.WebSocketExample.connect
-
-GET     /ajaxExample/get                            controllers.AjaxExample.get
-POST    /ajaxExample/post                           controllers.AjaxExample.post
-
-POST    /serializationExample/post                  controllers.SerializationExample.post
+GET     /                                   controllers.RaffleController.participant
+GET     /raffle/admin/socket                controllers.RaffleController.adminSocket
+GET     /raffle/participant/socket          controllers.RaffleController.participantSocket
+GET     /raffle/admin                       controllers.RaffleController.adminPage
 
 GET     /playRoutesExample/javaScriptRoutes                  controllers.PlayRoutesExample.javascriptRoutes
-GET     /playRoutesExample/id/:blogPostId/title/:titleUrl    controllers.PlayRoutesExample.getWithParams(blogPostId: Int, titleUrl: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

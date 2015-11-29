@@ -1,0 +1,20 @@
+@main("Raffle Participant") {
+
+  <div id="participant_widget_container">
+  </div>
+
+  <form id="particinapt_name_form">
+    <label for="participant_name_input">Name:</label>
+    <input type="text" class="participant_name" id="participant_name_input" value="(no name)"/>
+    <button type="submit">Set</button>
+  </form>
+
+  <div id="connectionStatus" class="connection-status disconnected">DISCONNECTED</div>
+
+<script>
+  $(document).ready(function(){
+    raffle.ParticipantApp().main();
+  });
+</script>
+
+}

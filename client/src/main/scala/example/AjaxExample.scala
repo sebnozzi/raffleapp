@@ -1,11 +1,13 @@
 package example
 
 import scala.scalajs.js.Any.fromFunction1
-
+import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom
 
+@JSExport
 object AjaxExample {
 
+  @JSExport
   def doExample() = {
     doAjaxGet()
     doAjaxPost()

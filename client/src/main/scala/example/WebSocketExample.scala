@@ -24,14 +24,15 @@ object WebSocketExample {
     socket.onmessage = (e: MessageEvent) => {
       val dataString = e.data.toString()
       println(s"Server says: ${dataString}")
+      socket.close(code = 1000, reason = "Normal close after successful example")
     }
 
     socket.onclose = (e: CloseEvent) => {
-      println("Socket closed")
+      println("Socket for WebSocketExample closed")
     }
 
     socket.onerror = (e: ErrorEvent) => {
-      println("Socket error")
+      println("Socket error in WebSocketExample")
     }
 
   }

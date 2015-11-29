@@ -2,15 +2,19 @@ package example
 
 import prickle._
 import org.scalajs.dom
+import scala.scalajs.js.annotation.JSExport
+
 import shared.SharedSerializationClasses._
 import scala.util.Success
 import scala.util.Failure
 
+@JSExport
 object SerializationExample {
 
   implicit val fruitPickler: PicklerPair[Fruit] = CompositePickler[Fruit].
     concreteType[Apple].concreteType[Lemon].concreteType[FruitSalad].concreteType[TheDurian.type]
 
+  @JSExport
   def doExample(): Unit = {
 
     val apple = Apple(isJuicy = true)
