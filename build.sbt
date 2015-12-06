@@ -12,7 +12,8 @@ lazy val server = (project in file("server")).settings(
     "com.vmunier" %% "play-scalajs-scripts" % "0.3.0",
     "org.webjars" % "jquery" % "1.11.1",
     "com.github.benhutchison" %% "prickle" % "1.1.10",
-    specs2 % Test
+    "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
+    "org.mockito" % "mockito-core" % "1.10.19" % "test"
   )
 ).enablePlugins(PlayScala).
   aggregate(clients.map(projectToRef): _*).

@@ -28,17 +28,20 @@ object RaffleController extends Controller {
       AdminSocketActor.props(out)
   }
 
-  def participantSocket = WebSocket.acceptWithActor[String, String] { request =>
+  def participantSocket = WebSocket.acceptWithActor[String, String] {  request =>
     out =>
       Logger.debug("Creating web-socket")
-      val remoteAddress = {
-        if(debugMode)
-          request.getQueryString("remoteAddress").getOrElse(request.remoteAddress)
-        else
-          request.remoteAddress
-      }
-      ParticipantSocketActor.props(out, remoteAddress)
+      ParticipantSocketActor.props(out, remoteAddress(request))
   }
 
+  private def remoteAddress(request: RequestHeader): String = {
+    val remoteAddress = {
+      if (debugMode)
+        request.getQueryString("remoteAddress").getOrElse(request.remoteAddress)
+      else
+        request.remoteAddress
+    }
+    remoteAddress
+  }
 }
 
