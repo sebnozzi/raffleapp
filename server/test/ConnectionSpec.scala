@@ -1,4 +1,5 @@
 import org.scalatest.{BeforeAndAfter, FreeSpec, Matchers}
+import shared.core.{RaffleApp, Participant}
 import scala.collection.mutable
 
 

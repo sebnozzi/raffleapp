@@ -1,4 +1,5 @@
 import org.scalatest.{FreeSpec, Matchers}
+import shared.core.{Admin, Participant, RaffleApp}
 
 // Where we model the relationship between the Admin(Client) and
 // the RaffleApp

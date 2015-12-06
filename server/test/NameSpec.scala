@@ -1,4 +1,5 @@
 import org.scalatest.{FreeSpec, Matchers}
+import shared.core.{Participant, RaffleApp}
 
 // In which we show that participants can set their names
 // and get them back when re-connecting
