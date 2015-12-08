@@ -1,3 +1,5 @@
+package core
+
 import org.scalatest.{FreeSpec, Matchers}
 import shared.core.{Participant, RaffleApp}
 

@@ -1,9 +1,10 @@
+package core
+
 import org.scalatest.mock.MockitoSugar
-import org.mockito.Mockito._
 import org.scalatest.{FreeSpec, Matchers}
 import shared.core.{Participant, RaffleApp}
+
 import scala.collection.mutable
-import scala.util.Random
 
 // Guiding test...
 class GuidingSpec extends FreeSpec with Matchers with MockitoSugar {

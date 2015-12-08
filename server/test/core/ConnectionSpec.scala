@@ -1,5 +1,8 @@
+package core
+
 import org.scalatest.{BeforeAndAfter, FreeSpec, Matchers}
-import shared.core.{RaffleApp, Participant}
+import shared.core.{Participant, RaffleApp}
+
 import scala.collection.mutable
 
 
