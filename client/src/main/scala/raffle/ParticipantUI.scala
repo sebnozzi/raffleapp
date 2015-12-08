@@ -14,6 +14,7 @@ abstract class ParticipantUI {
   nameForm = new NameForm(){
     def onNameChange(newName:String) = {
       participantWidget.setName(newName)
+      onNameChanged(newName)
     }
   }
 
@@ -29,6 +30,7 @@ abstract class ParticipantUI {
 
   def showWon(id: Int) = {
     val ourId = participantWidget.getId
+    println(s"Winner? ourId == id ?")
     if (ourId == id)
       participantWidget.showAsWinner()
     else

@@ -22,6 +22,32 @@ class AdminSpec extends FreeSpec with Matchers {
     app.setName("3", "participantThree")
   }
 
+  "When an connects, the app knows about it" in new Fixture {
+    var connected = false
+    val admin = new Admin()
+    app.registerAdmin(admin)
+    app.isAdminConnected should be(true)
+  }
+
+  "When admin connects, it gets a notification" in new Fixture {
+    var connected = false
+    val admin = new Admin() {
+      override def onRegistered(participantNameMap: Map[String, Option[String]]): Unit = {
+        connected = true
+      }
+    }
+    app.registerAdmin(admin)
+    connected should be(true)
+  }
+
+  "An admin can not connect more than once" in new Fixture {
+    val admin = new Admin()
+    app.registerAdmin(admin)
+    intercept[IllegalStateException] {
+      app.registerAdmin(admin)
+    }
+  }
+
   "When the admin connects, it gets a list of connected participants, with uniqueId and names" in new Fixture {
     var receivedParticipants = Map[String, Option[String]]()
     val admin = new Admin() {

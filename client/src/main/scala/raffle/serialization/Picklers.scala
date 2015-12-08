@@ -14,5 +14,7 @@ object Picklers {
 
   implicit val adminToParticipantPickler: PicklerPair[AdminToParticipantProtocol] =
     CompositePickler[AdminToParticipantProtocol].
-      concreteType[AssignDataCmd]
+      concreteType[AssignDataCmd].
+      concreteType[ParticipantWonEvent]
+
 }
