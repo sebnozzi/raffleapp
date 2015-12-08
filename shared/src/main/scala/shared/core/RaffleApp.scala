@@ -38,6 +38,10 @@ class RaffleApp {
     }
   }
 
+  def adminDisconnected():Unit = {
+    optAdmin = None
+  }
+
   def isAdminConnected = optAdmin.isDefined
 
   private def alreadyRegistered(uniqueId: String): Boolean = {
