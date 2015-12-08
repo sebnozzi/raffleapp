@@ -12,13 +12,18 @@ import scala.collection.mutable
 class ConnectionSpec extends FreeSpec with Matchers with BeforeAndAfter {
 
   trait RaffleAppFixture {
-    var winnerId = ""
-    val registered = mutable.MutableList[Participant]()
-
     var app = new RaffleApp()
   }
 
-  trait OneParticipantFixture extends RaffleAppFixture {
+  trait HasWinner {
+    var winnerId = ""
+  }
+
+  trait HasRegistrered {
+    val registered = mutable.MutableList[Participant]()
+  }
+
+  trait OneParticipantFixture extends RaffleAppFixture with HasWinner with HasRegistrered {
     val p1 = new Participant() {
       override def onWinner(): Unit = {
         winnerId = "1"
@@ -39,31 +44,6 @@ class ConnectionSpec extends FreeSpec with Matchers with BeforeAndAfter {
     app.registerParticipant("2", p2)
   }
 
-  "when a participant disconnects, it does not participate in the raffle" in new TwoParticipantsFixture {
-    app.participantDisconnected(uniqueId = "1")
-
-    (1 to 100).foreach { _ =>
-      app.runRaffle()
-      winnerId should be("2")
-    }
-  }
-
-  "a participant is not added a second time if already identified and connected" in new TwoParticipantsFixture {
-
-    val p2_bis = new Participant() {
-      override def onWinner(): Unit = {
-        fail("Should not be winner - We overwrote original p2")
-      }
-    }
-
-    app.registerParticipant("2", p2_bis)
-
-    // Should run without ever choosing p2_bis
-    (1 to 100).foreach { _ =>
-      app.runRaffle()
-    }
-  }
-
   "when connecting, a participant gets called back saying it is registered" in new OneParticipantFixture  {
     registered should contain(p1)
   }
@@ -73,5 +53,28 @@ class ConnectionSpec extends FreeSpec with Matchers with BeforeAndAfter {
     registered should have size 1
   }
 
+  "a second instance of a participant is not added if one with same uniqueId is connected" in new TwoParticipantsFixture {
+    val p2_bis = new Participant() {
+      override def onWinner(): Unit = {
+        fail("Should never be winner, because it should not be added")
+      }
+    }
+
+    app.registerParticipant("2", p2_bis)
+
+    // Should run without EVER choosing p2_bis
+    (1 to 100).foreach { _ =>
+      app.runRaffle()
+    }
+  }
+
+  "when a participant disconnects, it does not participate in the raffle" in new TwoParticipantsFixture {
+    app.participantDisconnected(uniqueId = "1")
+
+    (1 to 100).foreach { _ =>
+      app.runRaffle()
+      winnerId should be("2")
+    }
+  }
 
 }

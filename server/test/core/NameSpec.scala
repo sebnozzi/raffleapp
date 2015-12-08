@@ -8,7 +8,7 @@ import shared.core.{Participant, RaffleApp}
 class NameSpec extends FreeSpec with Matchers {
 
   trait AppWithKnownName {
-    var previousName = ""
+    var previousName = "CALLBACK-NEVER-INVOKED"
     val app = new RaffleApp()
     val p = new Participant() {
       override def onSetName(name:String):Unit = {
@@ -24,6 +24,7 @@ class NameSpec extends FreeSpec with Matchers {
     val app = new RaffleApp()
     val p = new Participant()
     app.registerParticipant("1", p)
+
     app.setName("1", "nameOfParticipant1")
   }
 

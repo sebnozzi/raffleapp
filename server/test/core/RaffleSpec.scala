@@ -7,7 +7,7 @@ import shared.core.{Participant, RaffleApp}
 import scala.collection.mutable
 
 // Guiding test...
-class GuidingSpec extends FreeSpec with Matchers with MockitoSugar {
+class RaffleSpec extends FreeSpec with Matchers with MockitoSugar {
 
   "given a raffle app" - {
 

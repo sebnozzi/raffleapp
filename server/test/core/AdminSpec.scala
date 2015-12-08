@@ -22,11 +22,17 @@ class AdminSpec extends FreeSpec with Matchers {
     app.setName("3", "participantThree")
   }
 
-  "When an connects, the app knows about it" in new Fixture {
-    var connected = false
+  "When an admin connects, the app knows about it" in new Fixture {
     val admin = new Admin()
     app.registerAdmin(admin)
     app.isAdminConnected should be(true)
+  }
+
+  "When an admin dis-connects, the app also knows about it" in new Fixture {
+    val admin = new Admin()
+    app.registerAdmin(admin)
+    app.adminDisconnected()
+    app.isAdminConnected should be(false)
   }
 
   "When admin connects, it gets a notification" in new Fixture {
