@@ -3,41 +3,11 @@ body {
   font-family: sans-serif;
 }
 
-.raffle-toolbox {
-}
-
-#participants {
-  margin-top: 20px;
-}
-
-#participants {
-  padding: 0;
-}
-
-#participants li {
-  float: left;
-  display: block;
-}
-
 .participant {
   background-color: #B3B3B3;
   margin-right: 5px;
   margin-bottom: 5px;
   color: #505050;
-}
-
-#participants .participant {
-  border-radius: 5px;
-  border: 2px solid #6F6F6F;
-  height: 150px;
-  width: 100px;
-}
-
-#participant_widget_container div.participant {
-  border-radius: 5px;
-  border: 5px solid #6F6F6F;
-  height: 300px;
-  width: 200px;
 }
 
 .participant img {
@@ -76,8 +46,4 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
-}
-
-input.participant_name {
-
 }

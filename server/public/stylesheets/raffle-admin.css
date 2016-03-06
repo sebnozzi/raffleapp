@@ -1,0 +1,22 @@
+#participants {
+  margin-top: 20px;
+}
+
+#participants {
+  padding: 0;
+}
+
+#participants li {
+  float: left;
+  display: block;
+}
+
+.raffle-toolbox {
+}
+
+.participant {
+  border-radius: 5px;
+  border: 2px solid #6F6F6F;
+  height: 150px;
+  width: 100px;
+}

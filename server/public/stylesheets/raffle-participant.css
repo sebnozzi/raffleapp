@@ -1,0 +1,23 @@
+
+
+#participant-portrait {
+  border-radius: 5px;
+}
+
+.winner {
+  background-color: #B5F5B1;
+  color: black;
+}
+
+.active {
+  background-color: #EAB463;
+  color: black;
+}
+
+.connected {
+
+}
+
+.disconnected {
+
+}

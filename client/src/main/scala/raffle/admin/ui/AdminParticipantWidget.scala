@@ -1,4 +1,4 @@
-package raffle.shared.ui
+package raffle.admin.ui
 
 import java.util.concurrent.TimeUnit
 
@@ -7,10 +7,8 @@ import org.scalajs.jquery._
 import scala.concurrent.duration.FiniteDuration
 import scala.scalajs.js.timers._
 
-/**
- * Created by sebnozzi on 21/11/15.
- */
-class ParticipantWidget(id: Int, container:JQuery, optName: Option[String] = None) {
+
+class AdminParticipantWidget(id: Int, container: JQuery, optName: Option[String] = None) {
 
   private var _id = id
 
@@ -19,12 +17,9 @@ class ParticipantWidget(id: Int, container:JQuery, optName: Option[String] = Non
   val imgDiv = jQuery( """<img src="/assets/images/user1-256x256.png"/>""")
   val nameDiv = jQuery( s"""<div class="participant-name">NAME</div>""")
 
-  participantDiv.append(idDiv).append(imgDiv).append(nameDiv)
-  jQuery(container).append(participantDiv)
+  buildUI(container)
   setId(id)
-  optName.foreach(setName(_))
-
-  def getId: Int = _id
+  optName.foreach(setName)
 
   def showTemporarilyActive(milliseconds: Int) = {
     showActive()
@@ -58,6 +53,11 @@ class ParticipantWidget(id: Int, container:JQuery, optName: Option[String] = Non
 
   def showInactive(): Unit = {
     removeClasses()
+  }
+
+  private def buildUI(container: JQuery):Unit = {
+    participantDiv.append(idDiv).append(imgDiv).append(nameDiv)
+    jQuery(container).append(participantDiv)
   }
 
   private def removeClasses(): Unit = {

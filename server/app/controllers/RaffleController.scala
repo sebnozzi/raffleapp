@@ -21,7 +21,7 @@ object RaffleController extends Controller {
 
   def adminPage = Action { request =>
     debugMode = request.getQueryString("debugMode").isDefined
-    Ok(views.html.index())
+    Ok(views.html.admin())
   }
 
   def adminSocket = WebSocket.acceptWithActor[String, String] { request =>

@@ -11,6 +11,7 @@ import scala.scalajs.js.annotation.JSExport
 @JSExport
 object ParticipantApp {
 
+  private var ourId = 0
   private var server: Server = _
   private var ui: ParticipantUI = _
 
@@ -35,9 +36,10 @@ object ParticipantApp {
 
       def receive = {
         case AssignDataCmd(id, optName) =>
+          ourId = id
           ui.updateIdAndName(id, optName)
-        case ParticipantWonEvent(id) =>
-          ui.showWon(id)
+        case ParticipantWonEvent(winnerId) =>
+          ui.showWon(ourId, winnerId)
       }
     }
 

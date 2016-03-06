@@ -1,7 +1,6 @@
 package raffle.participant.ui
 
 import org.scalajs.jquery._
-import raffle.shared.ui.ParticipantWidget
 
 abstract class ParticipantUI {
 
@@ -9,18 +8,17 @@ abstract class ParticipantUI {
   private var nameForm: NameForm = _
 
   def init(): Unit = {
-    participantWidget = new ParticipantWidget(id = 0,
-      container = jQuery("#participant_widget_container"))
+    participantWidget = new ParticipantWidget()
   }
 
-  nameForm = new NameForm(){
-    def onNameChange(newName:String) = {
+  nameForm = new NameForm() {
+    def onNameChange(newName: String) = {
       participantWidget.setName(newName)
       onNameChanged(newName)
     }
   }
 
-  def onNameChanged(newName:String)
+  def onNameChanged(newName: String)
 
   def updateIdAndName(id: Int, optName: Option[String]) = {
     participantWidget.setId(id)
@@ -30,23 +28,29 @@ abstract class ParticipantUI {
     }
   }
 
-  def showWon(id: Int) = {
-    val ourId = participantWidget.getId
+  def showWon(ourId:Int, winnerId: Int) = {
     println(s"Winner? ourId == id ?")
-    if (ourId == id)
+    if (ourId == winnerId)
       participantWidget.showAsWinner()
     else
       participantWidget.showInactive()
   }
 
   def updateConnectionStatus(connected: Boolean): Unit = {
-    val statusStr =
-      if(connected)
-      "CONNECTED"
-    else
-      "DISCONNECTED"
+    val (statusStr, alertClass) =
+      if (connected)
+        ("CONNECTED", "connected")
+      else
+        ("DISCONNECTED", "disconnected")
 
-    jQuery("#connectionStatus").html(statusStr)
+    val statusTextNode = jQuery("#connection-status-text")
+    val statusNode = jQuery("#connection-status-container")
+
+    statusTextNode.html(statusStr)
+
+    statusNode.removeClass("connected")
+    statusNode.removeClass("disconnected")
+    statusNode.addClass(alertClass)
   }
 
 }

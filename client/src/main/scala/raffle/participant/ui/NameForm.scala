@@ -4,32 +4,39 @@ import org.scalajs.jquery._
 
 abstract class NameForm {
 
+  private val inputField:JQuery = jQuery("#participant_name_input")
+  private val inputForm:JQuery = jQuery("#participant_name_form")
+
   initEventHandlers()
 
   def onNameChange(newName:String):Unit
 
   def getName: String = {
-    jQuery("#participant_name_input").value().toString
+    inputField.value().toString
   }
 
   def setName(name: String) = {
-    jQuery("#participant_name_input").value(name)
+    inputField.value(name)
   }
 
   private def initEventHandlers(): Unit = {
-    jQuery("#particinapt_name_form").submit((e: JQueryEventObject) => {
+    inputForm.submit((e: JQueryEventObject) => {
       e.preventDefault()
-      jQuery("#participant_name_input").blur()
+      inputField.blur()
     })
 
-    jQuery("#participant_name_input").blur((e: JQueryEventObject) => {
+    inputField.blur((e: JQueryEventObject) => {
       val newName = getName
       onNameChange(newName)
     })
 
-    jQuery("#participant_name_input").focus((e: JQueryEventObject) => {
-      jQuery(e.target).select()
+    /*
+    inputField.focus((e: JQueryEventObject) => {
+      jQuery(e.target).value("")
     })
+    */
+
   }
+
 
 }

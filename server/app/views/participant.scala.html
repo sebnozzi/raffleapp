@@ -1,20 +1,58 @@
-@main("Raffle Participant") {
+<!DOCTYPE html>
 
-  <div id="participant_widget_container">
-  </div>
+<html>
+<head>
+  <title>Raffle Participant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <form id="particinapt_name_form">
-    <label for="participant_name_input">Name:</label>
-    <input type="text" class="participant_name" id="participant_name_input" value="(no name)"/>
-    <button type="submit">Set</button>
-  </form>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/raffle-participant.css")">
 
-  <div id="connectionStatus" class="connection-status disconnected">DISCONNECTED</div>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+  <script src="@routes.Assets.at("lib/jquery/jquery.min.js")" type="text/javascript"></script>
+
+  <script type="text/javascript" src="@routes.RaffleController.socketRoutes"></script>
+
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+<body>
+
+<!-- CONTENT START -->
+<div data-role="page">
+
+  <div data-role="header">
+    <h1>Participant</h1>
+    <h2>ID: <span id="participant-id-value">0</span></h2>
+  </div><!-- /header -->
+
+  <div role="main" class="ui-content">
+    <p style="text-align: center" id="participant-portrait">
+      <img src="@routes.Assets.at("images/user1-256x256.png")">
+    </p>
+    <h1><span id="participant-name">(no-name)</span></h1>
+    <form id="participant_name_form">
+      <label for="participant_name_input">Name:</label>
+      <input type="text" name="participant_name_input" id="participant_name_input" placeholder="Name" value="">
+    </form>
+  </div><!-- /content -->
+
+  <div data-role="footer" id="connection-status-container">
+    <h4><span id="connection-status-text">DISCONNECTED</span></h4>
+  </div><!-- /footer -->
+
+</div><!-- /page -->
+<!-- CONTENT END -->
 
 <script>
   $(document).ready(function(){
     raffle.participant.ParticipantApp().main();
   });
 </script>
+@playscalajs.html.scripts("client")
 
-}
+</body>
+</html>

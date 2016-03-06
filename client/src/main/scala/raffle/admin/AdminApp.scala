@@ -3,20 +3,16 @@ package raffle.admin
 import org.scalajs.dom.raw._
 import org.scalajs.jquery._
 import prickle.{CompositePickler, Pickle, PicklerPair, Unpickle}
+import raffle.admin.ui.AdminParticipantWidget
 import raffle.shared.communication.routes.SocketRoutes
-import raffle.shared.ui.ParticipantWidget
 import shared.SharedSerializationClasses._
 
 import scala.collection.mutable
 import scala.scalajs.js.annotation.JSExport
 import scala.util.{Failure, Success}
 
-/**
- * Created by sebnozzi on 20/11/15.
- */
 @JSExport
 object AdminApp {
-
 
   implicit val adminProtocolPickler: PicklerPair[AdminProtocol] =
     CompositePickler[AdminProtocol].
@@ -27,7 +23,7 @@ object AdminApp {
       concreteType[ShowAsWinner].
       concreteType[ChangeNameCmd]
 
-  val participantMap = mutable.Map[Int, ParticipantWidget]()
+  val participantMap = mutable.Map[Int, AdminParticipantWidget]()
 
   @JSExport
   def main(): Unit = {
@@ -56,7 +52,7 @@ object AdminApp {
     if (!participantMap.contains(id)) {
       val newItem = jQuery("<li></li>")
       jQuery("#participants").append(newItem)
-      val widget = new ParticipantWidget(id, newItem, optName)
+      val widget = new AdminParticipantWidget(id, newItem, optName)
       participantMap.put(id, widget)
     }
   }
@@ -65,12 +61,6 @@ object AdminApp {
     participantMap.get(id).foreach { widget =>
       widget.remove()
       participantMap.remove(id)
-    }
-  }
-
-  def showTemporarilyAsActive(id: Int): Unit = {
-    participantMap.get(id).foreach { widget =>
-      widget.showTemporarilyActive(200)
     }
   }
 
@@ -116,7 +106,7 @@ object AdminApp {
             case RemoveParticipantCmd(id) =>
               removeParticipant(id)
             case ShowTemporarilyActive(id) =>
-              showTemporarilyAsActive(id)
+              println("NOT IMPLEMENTED: ShowTemporarilyActive")
             case ShowAsWinner(participantId) =>
               showAsWinner(participantId)
           }
