@@ -33,7 +33,7 @@ object RaffleController extends Controller {
   def participantSocket = WebSocket.acceptWithActor[String, String] {  request =>
     out =>
       Logger.debug("Creating web-socket")
-      ParticipantSocketActor.props(out, remoteAddress(request))
+      ParticipantSocketActor.props(out, remoteAddress(request), initialName(request))
   }
 
   def socketRoutes = Action { implicit request =>
@@ -51,6 +51,10 @@ object RaffleController extends Controller {
         request.remoteAddress
     }
     remoteAddress
+  }
+
+  private def initialName(request: RequestHeader): Option[String] = {
+    request.getQueryString("name")
   }
 }
 

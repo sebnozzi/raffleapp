@@ -9,15 +9,20 @@ import serialization.Picklers._
 
 object ParticipantSocketActor {
   def raffleServer = RaffleServer.instance
-  def props(out: ActorRef, remoteAddress:String) = Props(new ParticipantSocketActor(out, remoteAddress, raffleServer))
+  def props(out: ActorRef, remoteAddress:String, initialName:Option[String]) =
+    Props(new ParticipantSocketActor(out, remoteAddress, initialName, raffleServer))
 }
 
-class ParticipantSocketActor(out: ActorRef, remoteAddress:String, raffleServer: ActorRef) extends Actor {
+class ParticipantSocketActor(out: ActorRef, remoteAddress:String, initialName:Option[String], raffleServer: ActorRef) extends Actor {
 
   import actors.RaffleServerMessages._
 
   override def preStart(): Unit = {
     raffleServer ! AddParticipant(remoteAddress)
+
+    for(name <- initialName)
+      raffleServer ! UpdateParticipantName(remoteAddress, name)
+
     Logger.debug("Participant connected via WebSocket")
   }
 
