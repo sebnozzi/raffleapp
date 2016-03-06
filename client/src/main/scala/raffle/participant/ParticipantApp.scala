@@ -1,6 +1,8 @@
-package raffle
+package raffle.participant
 
 import org.scalajs.dom.location
+import raffle.communication.Server
+import raffle.participant.ui.ParticipantUI
 import shared.SharedSerializationClasses._
 
 import scala.scalajs.js.annotation.JSExport

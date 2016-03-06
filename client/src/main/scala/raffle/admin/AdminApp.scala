@@ -1,16 +1,12 @@
-package raffle
-
-import java.util.concurrent.TimeUnit
+package raffle.admin
 
 import org.scalajs.dom.raw._
 import org.scalajs.jquery._
-import scala.concurrent.duration.FiniteDuration
-import scala.scalajs.js.timers._
-import prickle.{Pickle, Unpickle, CompositePickler, PicklerPair}
+import prickle.{CompositePickler, Pickle, PicklerPair, Unpickle}
+import raffle.participant.ui.ParticipantWidget
 import shared.SharedSerializationClasses._
 
 import scala.collection.mutable
-
 import scala.scalajs.js.annotation.JSExport
 import scala.util.{Failure, Success}
 

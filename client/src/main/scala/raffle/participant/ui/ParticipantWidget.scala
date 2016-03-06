@@ -1,4 +1,4 @@
-package raffle
+package raffle.participant.ui
 
 import java.util.concurrent.TimeUnit
 

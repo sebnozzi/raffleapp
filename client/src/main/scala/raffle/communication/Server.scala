@@ -1,4 +1,4 @@
-package raffle
+package raffle.communication
 
 import org.scalajs.dom.raw._
 import prickle._
