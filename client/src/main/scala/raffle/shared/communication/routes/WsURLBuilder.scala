@@ -1,4 +1,4 @@
-package raffle.communication.routes
+package raffle.shared.communication.routes
 
 import org.scalajs.dom.location
 
@@ -24,8 +24,10 @@ object WsURLBuilder {
 
   val hostAndPort = location.host
 
-  def wsLocation(tailURL:String):String = {
-    s"$wsProtocol://$hostAndPort$tailURL"
+  val queryString = location.search
+
+  def wsLocation(relativeWsURL:String):String = {
+    s"$wsProtocol://$hostAndPort$relativeWsURL$queryString"
   }
 
 }

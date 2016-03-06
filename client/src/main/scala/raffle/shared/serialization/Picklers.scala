@@ -1,4 +1,4 @@
-package raffle.serialization
+package raffle.shared.serialization
 
 import prickle.{CompositePickler, PicklerPair}
 import shared.SharedSerializationClasses._

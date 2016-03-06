@@ -1,4 +1,4 @@
-package raffle.communication.routes.impl
+package raffle.shared.communication.routes.impl
 
 import scala.scalajs.js
 import scala.scalajs.js.annotation.JSName

@@ -1,8 +1,8 @@
-package raffle.communication
+package raffle.shared.communication
 
 import org.scalajs.dom.raw._
 import prickle._
-import raffle.serialization.Picklers._
+import raffle.shared.serialization.Picklers._
 import shared.SharedSerializationClasses._
 
 import scala.util.{Failure, Success}

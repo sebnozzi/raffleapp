@@ -1,7 +1,7 @@
-package raffle.communication.routes
+package raffle.shared.communication.routes
 
-import raffle.communication.routes.impl.NativeSocketRoutes
 import WsURLBuilder._
+import raffle.shared.communication.routes.impl.NativeSocketRoutes
 
 /**
   * Created by sebnozzi on 06/03/16.

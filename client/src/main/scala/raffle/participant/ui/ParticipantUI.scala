@@ -1,10 +1,12 @@
 package raffle.participant.ui
 
 import org.scalajs.jquery._
+import raffle.shared.ui.ParticipantWidget
 
 abstract class ParticipantUI {
-  var participantWidget: ParticipantWidget = _
-  var nameForm: NameForm = _
+
+  private var participantWidget: ParticipantWidget = _
+  private var nameForm: NameForm = _
 
   def init(): Unit = {
     participantWidget = new ParticipantWidget(id = 0,

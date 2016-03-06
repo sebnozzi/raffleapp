@@ -3,8 +3,8 @@ package raffle.admin
 import org.scalajs.dom.raw._
 import org.scalajs.jquery._
 import prickle.{CompositePickler, Pickle, PicklerPair, Unpickle}
-import raffle.communication.routes.SocketRoutes
-import raffle.participant.ui.ParticipantWidget
+import raffle.shared.communication.routes.SocketRoutes
+import raffle.shared.ui.ParticipantWidget
 import shared.SharedSerializationClasses._
 
 import scala.collection.mutable
