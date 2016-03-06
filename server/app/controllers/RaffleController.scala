@@ -1,9 +1,11 @@
 package controllers
 
 import actors._
+import controllers.PlayRoutesExample._
 import play.api.Logger
 import play.api.mvc._
 import play.api.Play.current
+import play.api.routing.JavaScriptReverseRouter
 
 
 /**
@@ -32,6 +34,13 @@ object RaffleController extends Controller {
     out =>
       Logger.debug("Creating web-socket")
       ParticipantSocketActor.props(out, remoteAddress(request))
+  }
+
+  def socketRoutes = Action { implicit request =>
+    Ok(
+      JavaScriptReverseRouter("socketRoutes")(
+        routes.javascript.RaffleController.adminSocket,
+        routes.javascript.RaffleController.participantSocket)).as("text/javascript")
   }
 
   private def remoteAddress(request: RequestHeader): String = {

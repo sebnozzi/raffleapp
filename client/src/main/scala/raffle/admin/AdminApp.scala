@@ -3,6 +3,7 @@ package raffle.admin
 import org.scalajs.dom.raw._
 import org.scalajs.jquery._
 import prickle.{CompositePickler, Pickle, PicklerPair, Unpickle}
+import raffle.communication.routes.SocketRoutes
 import raffle.participant.ui.ParticipantWidget
 import shared.SharedSerializationClasses._
 
@@ -15,6 +16,7 @@ import scala.util.{Failure, Success}
  */
 @JSExport
 object AdminApp {
+
 
   implicit val adminProtocolPickler: PicklerPair[AdminProtocol] =
     CompositePickler[AdminProtocol].
@@ -29,7 +31,8 @@ object AdminApp {
 
   @JSExport
   def main(): Unit = {
-    val server = buildAndStartServer()
+    val adminSocketURL = SocketRoutes.adminSocketURL
+    val server = buildAndStartServer(adminSocketURL)
     onStartRaffleButtonPressed {
       startRaffle(server)
     }
@@ -45,8 +48,8 @@ object AdminApp {
     server.sendStartRafflePressedEvent()
   }
 
-  def buildAndStartServer(): Server = {
-    new Server(s"ws://localhost:9000/raffle/admin/socket")
+  def buildAndStartServer(adminSocketURL:String): Server = {
+    new Server(adminSocketURL)
   }
 
   def addParticipant(id: Int, optName: Option[String]): Unit = {

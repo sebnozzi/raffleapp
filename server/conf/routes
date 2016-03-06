@@ -8,6 +8,7 @@ GET     /                                   controllers.RaffleController.partici
 GET     /raffle/admin/socket                controllers.RaffleController.adminSocket
 GET     /raffle/participant/socket          controllers.RaffleController.participantSocket
 GET     /raffle/admin                       controllers.RaffleController.adminPage
+GET     /raffle/socketRoutes                controllers.RaffleController.socketRoutes
 
 GET     /playRoutesExample/javaScriptRoutes                  controllers.PlayRoutesExample.javascriptRoutes
 

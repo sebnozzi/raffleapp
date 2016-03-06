@@ -2,6 +2,7 @@ package raffle.participant
 
 import org.scalajs.dom.location
 import raffle.communication.Server
+import raffle.communication.routes.SocketRoutes
 import raffle.participant.ui.ParticipantUI
 import shared.SharedSerializationClasses._
 
@@ -16,6 +17,7 @@ object ParticipantApp {
 
   @JSExport
   def main(): Unit = {
+    val socketURL = SocketRoutes.participantSocketURL
 
     ui = new ParticipantUI() {
       def onNameChanged(newName: String): Unit =
@@ -23,7 +25,7 @@ object ParticipantApp {
     }
     ui.init()
 
-    server = new Server("ws://localhost:9000/raffle/participant/socket" + location.search) {
+    server = new Server(socketURL + location.search) {
 
       override def onConnect(): Unit = {
         ui.updateConnectionStatus(connected = true)
