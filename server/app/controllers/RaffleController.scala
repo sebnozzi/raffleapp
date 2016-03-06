@@ -1,7 +1,6 @@
 package controllers
 
 import actors._
-import controllers.PlayRoutesExample._
 import play.api.Logger
 import play.api.mvc._
 import play.api.Play.current
