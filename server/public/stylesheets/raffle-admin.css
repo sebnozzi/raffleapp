@@ -20,3 +20,11 @@
   height: 150px;
   width: 100px;
 }
+
+.participant-name {
+  word-wrap: normal;
+  text-align: center;
+  font-size: 0.7em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;  
+}

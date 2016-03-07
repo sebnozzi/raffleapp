@@ -40,10 +40,3 @@ body {
   margin-left: 10px;
   font-size: small;
 }
-
-.participant-name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
