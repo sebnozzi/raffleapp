@@ -41,6 +41,8 @@ lazy val sharedJs = shared.js
 // loads the Play project at sbt startup
 onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
 
+herokuAppName in Compile := "scala-vienna-raffle"
+
 // for Eclipse users
 EclipseKeys.skipParents in ThisBuild := false
 // Compile the project before generating Eclipse files, so that generated .scala or .class files for views and routes are present
