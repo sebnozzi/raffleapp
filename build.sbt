@@ -14,7 +14,10 @@ lazy val server = (project in file("server")).settings(
     "com.github.benhutchison" %% "prickle" % "1.1.10",
     "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
     "org.mockito" % "mockito-core" % "1.10.19" % "test"
-  )
+  ),
+  // Heroku specific
+  herokuAppName in Compile := "scala-vienna-raffle",
+  herokuSkipSubProjects in Compile := false
 ).enablePlugins(PlayScala).
   aggregate(clients.map(projectToRef): _*).
   dependsOn(sharedJvm)
@@ -40,8 +43,6 @@ lazy val sharedJs = shared.js
 
 // loads the Play project at sbt startup
 onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
-
-herokuAppName in Compile := "scala-vienna-raffle"
 
 // for Eclipse users
 EclipseKeys.skipParents in ThisBuild := false
