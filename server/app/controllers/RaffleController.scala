@@ -46,8 +46,9 @@ object RaffleController extends Controller {
     val remoteAddress = {
       if (debugMode)
         request.getQueryString("remoteAddress").getOrElse(request.remoteAddress)
-      else
-        request.remoteAddress
+      else {
+        request.headers.get("X-Forwarded-For").getOrElse(request.remoteAddress)
+      }
     }
     remoteAddress
   }
