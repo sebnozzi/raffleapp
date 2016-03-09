@@ -13,9 +13,12 @@ import play.api.routing.JavaScriptReverseRouter
 object RaffleController extends Controller {
 
   var debugMode = false
+  def uuid = java.util.UUID.randomUUID.toString
 
   def participant = Action {
-    Ok(views.html.participant())
+    Ok(views.html.participant()).withCookies(
+      Cookie("remoteAddress", uuid)
+    )
   }
 
   def adminPage = Action { request =>
@@ -47,7 +50,7 @@ object RaffleController extends Controller {
       if (debugMode)
         request.getQueryString("remoteAddress").getOrElse(request.remoteAddress)
       else {
-        request.headers.get("X-Forwarded-For").getOrElse(request.remoteAddress)
+        request.cookies.get("remoteAddress").map(_.value).getOrElse(request.remoteAddress)
       }
     }
     remoteAddress
