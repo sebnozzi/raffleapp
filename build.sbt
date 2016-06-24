@@ -15,6 +15,11 @@ lazy val server = (project in file("server")).settings(
     "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
     "org.mockito" % "mockito-core" % "1.10.19" % "test"
   ),
+
+  // Skip generating documentation
+  sources in (Compile, doc) := Seq.empty,
+  publishArtifact in (Compile, packageDoc) := false,
+
   // Heroku specific
   herokuAppName in Compile := "scala-vienna-raffle",
   herokuSkipSubProjects in Compile := false
