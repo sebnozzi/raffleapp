@@ -15,6 +15,9 @@ dist
 .settings
 .DS_Store
 
+# Deployment
+deploy.sh
+
 # hidden cross project folders
 shared/.js
 shared/.jvm
