@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sebnozzi/raffleapp.svg?branch=master)](https://travis-ci.org/sebnozzi/raffleapp)
+
 # Raffle-App
 
 ## Usage
